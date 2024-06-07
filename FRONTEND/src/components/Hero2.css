@@ -1,0 +1,9 @@
+.path {
+  /* clip-path: polygon(0 0, 100% 0, 69% 100%, 0% 100%); */
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  overflow: hidden;
+}
+.path1 {
+  clip-path: polygon(0 0, 100% 90%, 100% 100%, 0% 0%);
+}

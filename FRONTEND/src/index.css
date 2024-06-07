@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "moranga";
+
+  src: url(./fonts/moranga.ttf);
+}
+@font-face {
+  font-family: "atterna";
+  src: url(./fonts/Attena.otf);
+}
+@font-face {
+  font-family: "bebas";
+  src: url(./fonts/BebasNeue-Regular.ttf);
+}
+@font-face {
+  font-family: "gilroy1";
+  src: url(./fonts/Gilroy-Bold.otf);
+}
+@font-face {
+  font-family: "gilroy2";
+  src: url(./fonts/Gilroy-Medium.otf);
+}
+@font-face {
+  font-family: "gilroy3";
+  src: url(./fonts/Gilroy-Semibold.otf);
+}
