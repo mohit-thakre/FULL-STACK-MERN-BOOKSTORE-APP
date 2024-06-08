@@ -100,7 +100,7 @@ const Cartpage = () => {
                         {item.title.substr(0, 30)}
                       </h2>
                       <p className="text-sm text-gray-600">
-                        {item.description.substr(0, 30)}...
+                        {item.description.substr(0, 31)}...
                       </p>
                     </div>
                     <div className="flex items-center space-x-4">
