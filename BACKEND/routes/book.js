@@ -105,7 +105,7 @@ router.get("/getallbook", async (req, res) => {
 });
 router.get("/getrecentbook", async (req, res) => {
   try {
-    const allRecentBooks = await Book.find().sort({ createdAt: -1 }).limit(4);
+    const allRecentBooks = await Book.find().sort({ createdAt: -1, title: 1 }).limit(4);
     return res.status(200).json({
       success: true,
       message: "all book get successfully",
