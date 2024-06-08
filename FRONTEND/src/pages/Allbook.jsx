@@ -5,6 +5,7 @@ import { MdLanguage } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { appurl } from "../components/Helper";
 import Loader from "../components/Loader";
+import toast from "react-hot-toast";
 const Allbook = () => {
   const [bookdata, setbookdata] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,7 @@ const Allbook = () => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
+        toast.error(error);
       }
     }
     fetchdata();
@@ -29,6 +31,16 @@ const Allbook = () => {
     return (
       <div className=" w-full h-screen grid place-items-center ">
         <Loader />
+      </div>
+    );
+  }
+
+  if (!bookdata || bookdata === null || bookdata.length === 0) {
+    return (
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
       </div>
     );
   }

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
 import { appurl } from "./Helper";
+import Loader from "./Loader";
 
 const UpdateBook = () => {
+  const [loading, setloading] = useState(false);
   const [bookdata, setbookdata] = useState({
     url: "",
     title: "",
@@ -15,6 +17,7 @@ const UpdateBook = () => {
   const { idd } = useParams();
 
   useEffect(() => {
+    setloading(true);
     const fetchData = async () => {
       try {
         const res = await fetch(`${appurl}/api/v1/book/getbookbyid/${idd}`);
@@ -23,8 +26,9 @@ const UpdateBook = () => {
         }
         const result = await res.json();
         setbookdata(result.data);
+        setloading(false);
       } catch (err) {
-        console.log(err);
+        toast.error(err);
       }
     };
 
@@ -56,6 +60,23 @@ const UpdateBook = () => {
       toast.error("An error occurred while updating the book.");
     }
   };
+
+  if (loading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
+  if (!bookdata || bookdata === null || bookdata.length === 0) {
+    return (
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 max-w-2xl mx-auto bg-yellow-400 rounded-xl font-[gilroy3] shadow-md text-black">

@@ -27,13 +27,6 @@ const Favourites = () => {
     }
     fetchData();
   }, []);
-  if (loading) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
-  }
 
   async function fetchremove(bookid) {
     try {
@@ -54,8 +47,26 @@ const Favourites = () => {
       setfavourite(favourite.filter((book) => book._id !== bookid));
       toast.success(data.message);
     } catch (error) {
-      console.error("Failed to remove book from favourites:", error);
+      toast.error("Failed to remove book from favourites:", error);
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (!favourite || favourite === null || favourite.length === 0) {
+    return (
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
+      </div>
+    );
   }
 
   return (

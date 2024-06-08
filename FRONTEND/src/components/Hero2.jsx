@@ -39,10 +39,12 @@ const Hero2 = () => {
     );
   }
 
-  if (!data) {
+  if (!data || data === null || data.length === 0) {
     return (
-      <div className=" w-full h-screen grid place-items-center">
-        no data found
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
       </div>
     );
   }

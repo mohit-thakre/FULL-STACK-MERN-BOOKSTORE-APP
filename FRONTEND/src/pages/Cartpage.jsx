@@ -77,6 +77,16 @@ const Cartpage = () => {
     );
   }
 
+  if (!cart || cart === null) {
+    return (
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
+      </div>
+    );
+  }
+
   const role = localStorage.getItem("role");
   return (
     <div className="w-[98%] min-h-screen  mx-auto font-[gilroy3]">

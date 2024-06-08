@@ -46,11 +46,13 @@ const ViewBookDetails = () => {
     );
   }
 
-  if (!data || !data.data) {
+  if (!data || data === null || data.length === 0) {
     return (
-      <h1 className=" w-full h-screen grid place-items-center font-extrabold text-3xl">
-        No data found
-      </h1>
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
+      </div>
     );
   }
 

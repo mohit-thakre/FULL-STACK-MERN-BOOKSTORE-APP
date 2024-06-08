@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { appurl } from "./Helper";
+import Loader from "./Loader";
 
 const Orderhistory = () => {
   const [order, setorder] = useState([]);
+  const [loading, setloading] = useState(false);
 
   useEffect(() => {
+    setloading(true);
     async function getorderhistory() {
       const response = await fetch(`${appurl}/api/v1/book/getorderhistory`, {
         method: "GET",
@@ -16,11 +19,31 @@ const Orderhistory = () => {
         },
       });
       const data = await response.json();
-      console.log(data);
+
       setorder(data.data);
+      setloading(false);
     }
     getorderhistory();
   }, []);
+
+  if (loading) {
+    return (
+      <div>
+        {" "}
+        <Loader />
+      </div>
+    );
+  }
+
+  if (!order || order === null || order.length === 0) {
+    return (
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 max-w-2xl mx-auto bg-yellow-400 rounded-xl shadow-md font-[gilroy3]">

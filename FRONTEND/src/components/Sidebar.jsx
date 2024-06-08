@@ -17,6 +17,17 @@ const Sidebar = ({ data }) => {
     navigate("/login");
     toast.success("logout successfull");
   };
+
+  if (!data || data === null || data.length === 0) {
+    return (
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className=" hidden md:flex flex-col justify-between items-center text-white bg-[#023047]  h-full p-10 ">

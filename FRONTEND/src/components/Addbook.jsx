@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { appurl } from "./Helper";
-
+import Loader from "./Loader";
 const Addbook = () => {
+  const [loading, setloading] = useState(false);
   const [bookdata, setbookdata] = useState({
     url: "",
     title: "",
@@ -16,6 +17,7 @@ const Addbook = () => {
     setbookdata({ ...bookdata, [name]: value });
   }
   async function handlesubmit(e) {
+    setloading(true);
     try {
       e.preventDefault();
       const response = await fetch(`${appurl}/api/v1/book/addbook`, {
@@ -29,10 +31,27 @@ const Addbook = () => {
       });
 
       const data = await response.json();
+      setloading(false);
       toast.success(data.message);
     } catch (error) {
       toast.error(error);
     }
+  }
+  if (loading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
+  if (!bookdata || bookdata === null || bookdata.length === 0) {
+    return (
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
+      </div>
+    );
   }
 
   return (

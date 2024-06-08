@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { appurl } from "./Helper";
+import Loader from "./Loader";
 
 const Setting = () => {
   const [profile, setprofile] = useState("");
   const [address, setaddress] = useState({});
+  const [loading, setloading] = useState(true);
 
   useEffect(() => {
     async function fetchdata() {
@@ -17,9 +19,10 @@ const Setting = () => {
         },
       });
       const data = await response.json();
-      console.log(data.success);
+
       setprofile(data.success);
       setaddress(data.success.address);
+      setloading(false);
     }
     fetchdata();
   }, []);
@@ -42,7 +45,23 @@ const Setting = () => {
   function handlechange(e) {
     setaddress(e.target.value);
   }
-
+  if (loading) {
+    return (
+      <div>
+        {" "}
+        <Loader />
+      </div>
+    );
+  }
+  if (!profile || profile === null || profile.length === 0) {
+    return (
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
+      </div>
+    );
+  }
   return (
     <div className="p-6 max-w-2xl mx-auto bg-yellow-400 rounded-xl shadow-md font-[gilroy3]">
       <h1 className="font-bold text-2xl bg-[#023047] text-white text-center rounded-xl py-3 font-[moranga]">

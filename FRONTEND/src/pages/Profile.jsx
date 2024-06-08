@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { Outlet } from "react-router-dom";
-import Mobilenav from "../components/Mobilenav";
 import { appurl } from "../components/Helper";
 import Loader from "../components/Loader";
 
@@ -20,12 +19,20 @@ const Profile = () => {
         headers,
       });
       const data = await res.json();
-      console.log(data);
+
       setprofile(data.success);
+      setloading(false);
     }
     fetchdata();
-    setloading(false);
   }, []);
+
+  if (loading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className=" w-full min-h-screen px-12 py-8">

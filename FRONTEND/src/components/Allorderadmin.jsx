@@ -23,33 +23,19 @@ const Allorderadmin = () => {
         },
       });
       const data = await response.json();
-      console.log(data, "in all order");
+
       setdata(data.data);
       setloading(false);
     }
     fetchdata();
   }, []);
 
-  function showmodels() {
-    setshowmodel("flex");
-  }
-
   function hidemodel() {
     setshowmodel("hidden");
   }
 
-  if (loading) {
-    return (
-      <div className="">
-        <Loader />
-      </div>
-    );
-  }
-
   async function updatestatus(id, e) {
     try {
-      console.log(id);
-      console.log(e);
       const response = await fetch(
         `${appurl}/api/v1/book/updateorderstatus/${id}`,
         {
@@ -63,7 +49,7 @@ const Allorderadmin = () => {
         }
       );
       const data = await response.json();
-      console.log(data);
+
       setuserdata(data.user);
       setdata((prevData) =>
         prevData.map((item) =>
@@ -71,8 +57,26 @@ const Allorderadmin = () => {
         )
       );
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (!data || data === null || data.length === 0) {
+    return (
+      <div className=" grid place-content-center">
+        <h1 className=" font-[moranga] text-3xl font-extrabold ">
+          no data found
+        </h1>
+      </div>
+    );
   }
 
   return (
