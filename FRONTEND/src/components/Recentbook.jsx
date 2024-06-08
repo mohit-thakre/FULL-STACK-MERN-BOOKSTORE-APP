@@ -73,21 +73,21 @@ const Recentbook = () => {
                   <img
                     src={item.url}
                     alt={item.title}
-                    className="h-40 w-full object-cover rounded-t-2xl"
+                    className="h-40 w-full  rounded-t-2xl"
                   />
                   <div className="px-2 flex flex-col items-center">
                     <p className="font-bold text-lg">
-                      {item.title.substr(0, 15)}
+                      {item.title.substr(0, 35)}
                     </p>
                     <p className="text-gray-700 flex flex-col items-center">
                       <span className="font-bold">₹ {item.price}</span>
                       <span className="flex gap-1 justify-center items-center">
                         <MdLanguage className="font-bold" />{" "}
-                        {item.language.substring(0, 15)}
+                        {item.language.substring(0, 35)}
                       </span>
                     </p>
                     <p className="text-sm text-gray-600 mt-2">
-                      By - {item.author.substring(0, 25)}
+                      By - {item.author.substring(0, 35)}
                     </p>
                   </div>
                 </div>

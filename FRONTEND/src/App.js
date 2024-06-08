@@ -20,6 +20,7 @@ import Updatebook from "./components/Updatebook";
 import Aboutus from "./pages/Aboutus";
 import Privateroute from "./components/Privateroute";
 import Hero2 from "./components/Hero2";
+import Notfoundpage from "./components/Notfoundpage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/all-book" element={<Allbook />}></Route>
         <Route path="/login" element={<Loginpage />}></Route>
         <Route path="/signup" element={<Signuppage />}></Route>
+        <Route path="*" element={<Notfoundpage />}></Route>
         <Route
           path="/cart"
           element={

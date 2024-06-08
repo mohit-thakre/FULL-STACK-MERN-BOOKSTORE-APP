@@ -3,12 +3,15 @@ import toast from "react-hot-toast";
 import { MdDeleteOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { appurl } from "../components/Helper";
+import Loader from "../components/Loader";
 
 const Cartpage = () => {
   const [cart, setCart] = useState([]);
+  const [location, setlocation] = useState("");
 
   useEffect(() => {
     async function getcart() {
+      setlocation(true);
       const response = await fetch(`${appurl}/api/v1/book/getbookincart`, {
         method: "GET",
         headers: {
@@ -18,6 +21,7 @@ const Cartpage = () => {
       });
       const data = await response.json();
       setCart(data.data);
+      setlocation(false);
     }
     getcart();
   }, []);
@@ -64,9 +68,18 @@ const Cartpage = () => {
 
     toast.success(data.message);
   };
+
+  if (location) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
+
   const role = localStorage.getItem("role");
   return (
-    <div className="w-[98%] min-h-screen mx-auto font-[gilroy3]">
+    <div className="w-[98%] min-h-screen  mx-auto font-[gilroy3]">
       <div className="w-full h-full p-5 bg-yellow-400 rounded-2xl m-2">
         {role === "user" && (
           <div className="mt-5">

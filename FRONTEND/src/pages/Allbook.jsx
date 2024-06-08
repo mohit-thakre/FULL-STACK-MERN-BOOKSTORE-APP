@@ -47,7 +47,7 @@ const Allbook = () => {
                   <img
                     src={item.url}
                     alt={item.title}
-                    className="h-40 w-full object-cover rounded-t-2xl"
+                    className="h-40 w-full  rounded-t-2xl"
                   />
                   <div className="px-2 flex flex-col items-center">
                     <p className="font-bold text-lg">
